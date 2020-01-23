@@ -13,7 +13,42 @@
         :opened="infoOpened"
         @closeclick="infoOpened = false"
       >
-       <popup></popup>
+        <v-card
+    class="mx-auto dark"
+    max-width="200"
+    
+  >
+    <v-img
+      class="white--text align-end"
+      height="100px"
+      src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+    >
+      <v-card-title>Najlepsza domówka ever</v-card-title>
+    </v-img>
+
+    <v-card-subtitle class="pb-0">15-05-2020</v-card-subtitle>
+
+    <v-card-text class="text--primary">
+      <div>20:00</div>
+
+    </v-card-text>
+
+    <v-card-actions>
+      <v-btn
+        color="orange"
+        text
+      >
+        Share
+      </v-btn>
+
+      <v-btn
+        color="orange"
+        text
+      >
+        Explore
+      </v-btn>
+    </v-card-actions>
+  </v-card>
       </gmap-info-window>
       <GmapMarker
         :key="key"
@@ -27,13 +62,8 @@
 </template>
 
 <script>
-import Popup from "./Popup";
-
 export default {
   name: "Gmap",
-  components: {
-    Popup
-  },
   data: () => ({
     start: {
       lat: 54.51889,

@@ -14,6 +14,7 @@
         @closeclick="infoOpened = false"
       >
        <popup></popup>
+  </v-card>
       </gmap-info-window>
       <GmapMarker
         :key="key"
@@ -27,12 +28,12 @@
 </template>
 
 <script>
-import Popup from "./Popup";
+import Popup from './Popup'
 
 export default {
   name: "Gmap",
   components: {
-    Popup
+      Popup
   },
   data: () => ({
     start: {
