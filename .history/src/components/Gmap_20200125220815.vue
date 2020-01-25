@@ -5,7 +5,7 @@
       :center="start"
       :zoom="10"
       map-type-id="roadmap"
-      style="width: 83vw; height: 90vh"
+      style="width: 100vw; height: 90vh"
       v-bind:options="mapStyle"
     >
     

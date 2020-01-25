@@ -5,7 +5,7 @@
       :center="start"
       :zoom="10"
       map-type-id="roadmap"
-      style="width: 83vw; height: 90vh"
+      style="width: 100vw; height: 90vh"
       v-bind:options="mapStyle"
     >
     
@@ -57,7 +57,7 @@
         <v-list-item-subtitle>20-09-2020    20:00</v-list-item-subtitle>
         <v-list-tile-action-text>Dresscode: pidzamka</v-list-tile-action-text>
         <v-list-tile-action-text>Cena: Free
-
+          
         </v-list-tile-action-text>
 
       </v-list-item-content>
@@ -66,7 +66,7 @@
    
 
     <v-card-text>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur beatae eum, quam voluptatum non, nemo ratione dolorum minus placeat nisi reiciendis vitae aperiam deserunt officiis accusantium reprehenderit, libero dolor facilis?
+      Najlepsza impreza w mieście wbijajcie.
     </v-card-text>
 
     <v-card-actions>
