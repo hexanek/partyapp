@@ -91,8 +91,8 @@ export default new Vuex.Store({
         cash: payload.cash,
         lat: payload.lat,
         lng: payload.lng,
-        date: payload.date.toString(),
-        time: payload.time
+        date: payload.date.toISOString,
+        time: payload.time.toISOString
       };
       firebase
         .database()

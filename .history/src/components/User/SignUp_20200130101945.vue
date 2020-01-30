@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-container mt-12 pt-12 pl-12 mr-12>
+        <v-container mt-14 pt-8>
             <v-layout row>
                 <v-flex xs12 sm6 offset-sm3>
                     <v-card>

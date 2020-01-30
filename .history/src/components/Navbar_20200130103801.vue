@@ -50,7 +50,7 @@
     >
       <v-app-bar-nav-icon class="hidden-sm-and-up" @click.stop="drawer = !drawer" />
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer" font-weight-black>iParty</router-link>
+        <router-link to="/" tag="span" style="cursor: pointer" font-weight-bold>iParty</router-link>
         </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
@@ -72,8 +72,7 @@
           <v-icon dark left>mdi-cancel</v-icon>
           Logout
           </v-btn> -->
-          
-          
+          <h3>{{ userName }}</h3>
           <v-btn
           class="purple darken-4"
           v-for="item in menuItems"
@@ -93,30 +92,34 @@ export default {
   name: "Navbar",
   data: () => ({
     drawer: null,
-    userName: ""
+    userName: ''
   }),
-  methods: {},
+  methods: {
+    setName() {
+      this.userName = this.$store.getters.user.name;
+    },
+  },
   computed: {
     menuItems() {
       let menu = [
-        { title: "Login", link: "/signin" },
-        { title: "Sign Up", link: "/signup" }
-      ];
+        {title: 'Login', link: '/signin'},
+        {title: 'Sign Up', link: '/signup'}
+      ]
 
       if (this.userAuthenticated) {
-        menu = [{ title: "Log Out", link: "/" }];
+        menu = [
+        {title: 'Log Out', link: '/'}
+        ]
       }
-      return menu;
+      return menu
     },
     userAuthenticated() {
-      return (
-        this.$store.getters.user !== null &&
-        this.$store.getters.user !== undefined
-      );
-    },
-    user() {
-      this.$store.getters.user;
+      return this.$store.getters.user !== null && 
+      this.$store.getters.user !== undefined
     }
+  },
+  beforeMount() {
+    this.setName();
   }
 };
 </script>
