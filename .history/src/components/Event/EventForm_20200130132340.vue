@@ -197,8 +197,7 @@ export default {
         this.description !== "" &&
         this.eventType !== "" &&
         this.date !== "" &&
-        this.time !== "" &&
-        this.image !== null
+        this.time !== ""
       );
     }
   },
@@ -224,7 +223,7 @@ export default {
         title: this.title,
         description: this.description,
         location: this.location,
-        image: this.image,
+        imageUrl: this.image,
         eventType: this.eventType,
         cash: this.cash,
         dress: this.dress,

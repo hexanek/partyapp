@@ -197,8 +197,7 @@ export default {
         this.description !== "" &&
         this.eventType !== "" &&
         this.date !== "" &&
-        this.time !== "" &&
-        this.image !== null
+        this.time !== ""
       );
     }
   },
@@ -214,17 +213,11 @@ export default {
       });
     },
     onAddEvent: function() {
-      if (!this.isValid){
-        return
-      }
-      if (!this.image){
-        return
-      }
       const eData = {
         title: this.title,
         description: this.description,
         location: this.location,
-        image: this.image,
+        imageUrl: this.imageUrl,
         eventType: this.eventType,
         cash: this.cash,
         dress: this.dress,

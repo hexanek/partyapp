@@ -47,9 +47,6 @@ export default new Vuex.Store({
     },
     setUser(state, payload) {
       state.user = payload;
-    },
-    setCreatedMeetupKey(state, payload) {
-      state.createdMeetupKey = payload;
     }
   },
   actions: {
@@ -74,8 +71,7 @@ export default new Vuex.Store({
               lat: obj[key].lat,
               lng: obj[key].lng,
               date: obj[key].date,
-              time: obj[key].time,
-              creatorId: obj[key].creatorId
+              time: obj[key].time
             });
           }
           commit("setLoadedEvents", event);
@@ -84,58 +80,28 @@ export default new Vuex.Store({
           alert(error);
         });
     },
-    addEvent({ commit, getters }, payload) {
+    addEvent({ commit }, payload) {
       const event = {
         title: payload.title,
         location: payload.location,
         description: payload.description,
         eventType: payload.eventType,
+        imageUrl: payload.imageUrl,
         dress: payload.dress,
         cash: payload.cash,
         lat: payload.lat,
         lng: payload.lng,
         date: payload.date.toString(),
-        time: payload.time,
-        creatorId: getters.user.id
+        time: payload.time
       };
-      let imageUrl;
-      let key;
       firebase
         .database()
         .ref("events")
         .push(event)
         .then(data => {
-          return data.key;
-        })
-        .then(key => {
-          const filename = payload.image.name;
-          const ext = filename.slice(filename.lastIndexOf("."));
-          commit("setCreatedMeetupKey", key);
-          return firebase
-            .storage()
-            .ref("events/" + key + ext)
-            .put(payload.image);
-        })
-        .then(fileData => {
-          let fullPath = fileData.metadata.fullPath;
-          return firebase
-            .storage()
-            .ref(fullPath)
-            .getDownloadURL();
-        })
-        .then(URL => {
-          imageUrl = URL;
-          key = getters.createdMeetupKey;
-          return firebase
-            .database()
-            .ref("events")
-            .child(key)
-            .update({ imageUrl: imageUrl });
-        })
-        .then(() => {
+          const key = data.key;
           commit("addEvent", {
             ...event,
-            imageUrl: imageUrl,
             id: key
           });
         })
@@ -201,9 +167,6 @@ export default new Vuex.Store({
     },
     user(state) {
       return state.user;
-    },
-    createdMeetupKey(state) {
-      return state.createdMeetupKey;
     }
   }
 });

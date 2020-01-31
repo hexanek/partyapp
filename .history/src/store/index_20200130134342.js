@@ -47,9 +47,6 @@ export default new Vuex.Store({
     },
     setUser(state, payload) {
       state.user = payload;
-    },
-    setCreatedMeetupKey(state, payload) {
-      state.createdMeetupKey = payload;
     }
   },
   actions: {
@@ -98,44 +95,39 @@ export default new Vuex.Store({
         time: payload.time,
         creatorId: getters.user.id
       };
-      let imageUrl;
+      let imageUrll;
       let key;
       firebase
         .database()
         .ref("events")
         .push(event)
         .then(data => {
-          return data.key;
+          const key = data.key;
+
+          return key;
         })
         .then(key => {
           const filename = payload.image.name;
           const ext = filename.slice(filename.lastIndexOf("."));
-          commit("setCreatedMeetupKey", key);
           return firebase
             .storage()
-            .ref("events/" + key + ext)
+            .ref("events/" + key + "." + ext)
             .put(payload.image);
         })
         .then(fileData => {
-          let fullPath = fileData.metadata.fullPath;
-          return firebase
-            .storage()
-            .ref(fullPath)
-            .getDownloadURL();
-        })
-        .then(URL => {
-          imageUrl = URL;
-          key = getters.createdMeetupKey;
+          imageUrll = fileData.getMetadata.downloadURLs[0];
           return firebase
             .database()
             .ref("events")
             .child(key)
-            .update({ imageUrl: imageUrl });
+            .update({
+              imageUrl: imageUrll
+            });
         })
         .then(() => {
           commit("addEvent", {
             ...event,
-            imageUrl: imageUrl,
+            imageUrl: imageUrll,
             id: key
           });
         })
@@ -201,9 +193,6 @@ export default new Vuex.Store({
     },
     user(state) {
       return state.user;
-    },
-    createdMeetupKey(state) {
-      return state.createdMeetupKey;
     }
   }
 });

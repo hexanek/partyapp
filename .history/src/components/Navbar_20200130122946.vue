@@ -71,7 +71,6 @@
           
            <v-btn 
            v-if="userAuthenticated"
-           @click="onLogout"
            small rounded class="purple darken-4 mx-5 ml-n1 mr-n4">
           <v-icon dark left>mdi-cancel</v-icon>
           Logout
@@ -99,20 +98,13 @@ export default {
     drawer: null,
     userName: ""
   }),
-  methods: {
-    onLogout() {
-      this.$store.dispatch('logout')
-    }
-  },
+  methods: {},
   computed: {
     menuItems() {
       let menu = [
         { title: "Login", link: "/signin" },
         { title: "Sign Up", link: "/signup" }
       ];
-      if(this.userAuthenticated){
-        menu =[]
-      }
 
       return menu;
     },

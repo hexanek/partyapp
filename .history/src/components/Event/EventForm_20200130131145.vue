@@ -52,13 +52,8 @@
                         </v-layout>
                          <v-layout row>
                             <v-flex xs-12 offset-sm3 sm-3 col-4> 
-                                <v-text-field 
-                                name="description"
-                                label="Description"
-                                id="description"
-                                rows="2"
-                                v-model="description"
-                                required></v-text-field>
+                                <v-btn raised @click="onPickFile">Upload Image</v-btn>
+                                <input type="file" style="display: none" ref="fileInput" accept="image/*">
                             </v-flex>
                              <v-checkbox
                                v-model="dresscode"
@@ -74,11 +69,13 @@
                         </v-layout>
                          <v-layout row>
                             <v-flex xs-12 offset-sm3 sm-3 col-4> 
-                                
-                                <v-btn raised @click="onPickFile">Upload Image</v-btn>
-                                <input type="file" style="display: none" ref="fileInput" accept="image/*"
-                                @change="onPicked"
-                                >
+                                <v-text-field 
+                                name="description"
+                                label="Description"
+                                id="description"
+                                rows="2"
+                                v-model="description"
+                                required></v-text-field>
                             </v-flex>
                             <v-col cols="12" sm="6" md="4">
                                 <v-menu
@@ -185,8 +182,7 @@ export default {
       date: new Date().toISOString().substr(0, 10),
       menuDate: false,
       menuTime: false,
-      time: "",
-      image: null
+      time: ""
     };
   },
   computed: {
@@ -197,8 +193,7 @@ export default {
         this.description !== "" &&
         this.eventType !== "" &&
         this.date !== "" &&
-        this.time !== "" &&
-        this.image !== null
+        this.time !== ""
       );
     }
   },
@@ -214,17 +209,11 @@ export default {
       });
     },
     onAddEvent: function() {
-      if (!this.isValid){
-        return
-      }
-      if (!this.image){
-        return
-      }
       const eData = {
         title: this.title,
         description: this.description,
         location: this.location,
-        image: this.image,
+        imageUrl: this.imageUrl,
         eventType: this.eventType,
         cash: this.cash,
         dress: this.dress,
@@ -238,17 +227,6 @@ export default {
     },
     onPickFile() {
       this.$refs.fileInput.click();
-    },
-    onPicked (event) {
-      const files = event.target.files;
-      let filename = files[0].name;
-      if (filename.lastIndexOf('.') <= 0) {
-        return alert('invalid file')
-      }
-      const fileReader = new FileReader()
-        fileReader.readAsDataURL(files[0])
-        this.image = files[0];
-      
     }
   }
 };
