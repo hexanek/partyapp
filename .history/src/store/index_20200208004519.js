@@ -20,7 +20,7 @@ export default new Vuex.Store({
       state.user = payload;
     },
     setCreatedKey(state, payload) {
-      state.createdKey = payload;
+      state.createdMeetupKey = payload;
     }
   },
   actions: {
