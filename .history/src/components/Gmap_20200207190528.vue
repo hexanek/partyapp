@@ -1,5 +1,5 @@
 <template>
-  <div> 
+  <div class="position"> 
     
     <GmapMap
       :center="start"
@@ -33,7 +33,7 @@
        <v-navigation-drawer
        absolute
        width="400px"
-       height="85%"
+       height="80%"
        app
        clipped
        temporary
@@ -324,4 +324,12 @@ export default {
 .cs {
   background: transparent;
 }
+// .position {
+//   position: absoulte;
+//   margin-top: 4%;
+//   margin-left: 18%;
+// }
+// .popup {
+//   margin-top: 5%;
+// }
 </style>
