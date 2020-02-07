@@ -6,7 +6,7 @@
                 cols="auto"
                  md="auto"
                   >
-                <v-card class="text-center">
+                <v-card class="text-center" pa-2>
                     
                 <v-card-title
                 
