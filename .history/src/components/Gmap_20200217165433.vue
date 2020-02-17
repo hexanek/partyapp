@@ -37,6 +37,7 @@
        <v-navigation-drawer
        absolute
        width="400px"
+       height="90%"
        app
        clipped
        temporary
